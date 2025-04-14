@@ -1,0 +1,4 @@
+date,total_sleep_hours,sleep_efficiency,deep_sleep_pct,rem_sleep_pct,resting_hr,alarm_used
+2025-01-02,7.5,92,18,22,60,False
+2025-01-03,6.8,88,15,25,62,False
+2025-01-04,5.5,80,12,20,65,True
