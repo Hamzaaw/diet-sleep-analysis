@@ -1,110 +1,119 @@
-# **Diet & Sleep Study: Analyzing the Relationship Between Nutrition and Sleep Quality**
+# Diet & Sleep Study: Analyzing the Relationship Between Nutrition and Sleep Quality
 
-## **Project Overview**
+## Project Overview
+This project explores the relationship between dietary habits and sleep quality. Using three months of self-tracked diet data from MyFitnessPal and sleep data from a smartwatch, I analyze how factors such as macronutrient intake (protein, fiber, carbohydrates, fats) influence total sleep duration and sleep stages (REM, deep sleep, light sleep).
 
-This project explores the relationship between dietary habits and sleep quality. Using three months of self-tracked **diet data from MyFitnessPal** and **sleep data from a smartwatch**, I will analyze how factors such as macronutrient intake (protein, fiber, carbohydrates, fats) influence **total sleep duration and sleep stages (REM, deep sleep, light sleep).**
+The primary goal is to uncover patterns and test hypotheses regarding how different foods affect sleep quality. The study focuses only on days when I woke up naturally (without an alarm) to eliminate external disruptions. By applying data science techniques, I determine whether specific dietary habits correlate with improved or worsened sleep quality.
 
-The primary goal is to uncover patterns and test hypotheses regarding **how different foods affect sleep quality**. The study will focus only on **days when I woke up naturally (without an alarm)** to eliminate external disruptions. By applying data science techniques, I will determine whether specific dietary habits correlate with improved or worsened sleep quality.
+---
 
-## **Motivation**
+## Motivation
 
-### **Why This Project?**
+**Why This Project?**  
+- **Personal Relevance:** Sleep quality is crucial for overall health, especially for individuals with autoimmune disorders. Poor sleep can exacerbate inflammation and trigger flare-ups. Understanding how my diet impacts sleep will help me optimize both health and immune regulation.  
+- **Scientific Curiosity:** While studies suggest nutrition affects sleep, I want to see if these trends hold for my own body.  
+- **Data Science Application:** This project allows me to apply statistical analysis, hypothesis testing, and machine learning to real-world personal data.
 
-- **Personal Relevance:** Sleep quality is crucial for overall health, and it is even more critical for individuals like me who have an **autoimmune disorder**. Poor sleep can exacerbate inflammation, weaken immune function, and trigger flare-ups. Understanding how my diet impacts my sleep will help me optimize both health and immune regulation, contributing to better symptom management and overall well-being.
-- **Scientific Curiosity:** While studies suggest **nutrition affects sleep**, I want to see if these trends hold **for my own body**.
-- **Data Science Application:** This project allows me to apply **statistical analysis, hypothesis testing, and machine learning** to real-world personal data.
+---
 
-## **Data Source & Collection**
+## Data Source & Collection
 
-### **Dataset**
+### Diet Data (MyFitnessPal Logs)
+- **Columns:**  
+  - Date  
+  - Calories Consumed (kcal)  
+  - Macronutrient Breakdown (Carbohydrates, Protein, Fat)  
+  - Fiber Intake (g)  
+  - Sugar Intake (g)  
+  - Last Meal Hour (24h clock)
 
-I will use two primary data sources:
+### Sleep Data (Smartwatch Logs)
+- **Columns:**  
+  - Date  
+  - Total Sleep Duration (hrs)  
+  - Sleep Efficiency (% of time asleep in bed)  
+  - Deep Sleep (%)  
+  - REM Sleep (%)  
+  - Light Sleep (%)  
+  - Resting Heart Rate (bpm)  
+  - Natural Wakeup (Boolean)
 
-1. **Diet Data (MyFitnessPal Logs)**
+---
 
-   - **Calories Consumed (kcal)**
-   - **Macronutrient Breakdown** (Carbohydrates, Protein, Fat)
-   - **Fiber Intake (grams)**
-   - **Meal Timing** (time of last meal)
-   - **Sugar Intake (grams)**
+## Data Cleaning & Preprocessing
+- Remove days with missing sleep data.  
+- Filter out days with alarm-based wake-ups (keep only natural wake-up days).  
+- Convert meal timing into **Hours Before Sleep** (time between last meal and bedtime).  
+- Normalize nutrient intake to account for varying total calories:
+  - **Fiber per 1000 kcal** = Fiber (g) / (Calories / 1000)  
+  - **Protein per 1000 kcal** = Protein (g) / (Calories / 1000)  
 
-2. **Sleep Data (Smartwatch Logs)**
+---
 
-   - **Total Sleep Duration (hours)**
-   - **Sleep Efficiency (% of time asleep while in bed)**
-   - **Deep Sleep Percentage (%)**
-   - **REM Sleep Percentage (%)**
-   - **Resting Heart Rate During Sleep**
+## Exploratory Data Analysis (EDA)
+1. **Merge** diet and sleep datasets on `Date`.  
+2. **Filter** for natural wake-up days only.  
+3. **Feature creation**:  
+   - Hours Before Sleep  
+   - Fiber per 1000 kcal  
+   - Protein per 1000 kcal  
+4. **Visualizations & Insights**:  
+   - Time series plots of sleep metrics vs. dietary factors.  
+   - Correlation heatmap (including normalized features).  
+   - Boxplots (e.g., deep sleep % by high vs. low fiber).  
+   - Scatter plots (e.g., Hours Before Sleep vs. Sleep Efficiency).
 
-### **Data Cleaning & Preprocessing**
+---
 
-- Remove **days with missing sleep data**.
-- Filter out **days where I used an alarm** (only include natural wake-up days).
-- Standardize timestamps and convert meal timing into useful metrics (e.g., “Hours Before Sleep”).
-- Normalize macronutrient intake based on total calories to account for daily variation.
+## Hypothesis Testing
+1. **Fiber intake → Deep Sleep %**  
+   - Test: Mann-Whitney U (one-tailed)  
+2. **Hours Before Sleep → Sleep Efficiency %**  
+   - Test: Spearman rank correlation  
+3. **Protein intake → REM Sleep %**  
+   - Test: Spearman rank correlation  
 
-## **Exploratory Data Analysis (EDA)**
+Each test includes statistical results, boxplots or scatter + regression line, and clear interpretation.
 
-### **Visualizations & Insights**
+---
 
-- **Time Series Analysis:** Sleep trends over time in response to dietary changes.
-- **Correlation Heatmap:** How strongly different dietary factors correlate with sleep quality.
-- **Boxplots:** Comparing macronutrient intake between **good sleep** vs. **poor sleep** nights.
-- **Scatter Plots:** Exploring relationships like **fiber intake vs. deep sleep percentage**.
+## Machine Learning (ML) Methods
+- **Regression Analysis**: Predict sleep efficiency or deep sleep % from dietary and timing features.  
+- **Clustering Analysis**: Identify patterns/groups (e.g., “High Protein, Poor Sleep” vs. “Balanced Diet, Good Sleep”).  
 
-## **Hypothesis Testing**
+---
 
-I will conduct statistical tests to determine significant relationships, including:
+## Limitations & Future Work
+**Challenges:**  
+- Confounding variables (stress, exercise, screen time) may influence sleep.  
+- Limited sample size (personal data only).  
+- Missing data on some days requiring imputation.  
 
-1. **Does high fiber intake improve deep sleep?**
+**Future Directions:**  
+- Incorporate additional lifestyle data (e.g., stress levels, physical activity).  
+- Compare personal findings with public sleep datasets for validation.  
+- Extend the study to 6–12 months for more robust conclusions.  
 
-   - *Null Hypothesis (H₀):* Fiber intake has no effect on deep sleep.
-   - *Alternative Hypothesis (H₁):* Higher fiber intake increases deep sleep percentage.
-   - *Test Method:* Mann-Whitney U test.
+---
 
-2. **Does consuming more calories earlier in the day improve sleep efficiency?**
+## Tools & Technologies
+- **Python:** pandas, NumPy, matplotlib, seaborn, scikit-learn, scipy  
+- **Jupyter Notebook:** Exploratory analysis & hypothesis testing  
+- **GitHub:** Version control & project tracking  
 
-   - *Null Hypothesis (H₀):* Meal timing has no effect on sleep efficiency.
-   - *Alternative Hypothesis (H₁):* Eating earlier leads to better sleep.
-   - *Test Method:* Linear regression.
+---
 
-## **Machine Learning (ML) Methods**
+## Project Timeline
 
-To extend the analysis, I will apply basic ML models:
+| Date        | Milestone                                           |
+|-------------|-----------------------------------------------------|
+| **March 10** | Submit project proposal (GitHub README)            |
+| **April 18** | Collect data & conduct exploratory data analysis   |
+| **April 25** | Submit enriched EDA + hypothesis testing           |
+| **May 23**   | Apply machine learning models                      |
+| **May 30**   | Final project submission (report/video/webpage)    |
 
-1. **Regression Analysis:** Predict **sleep quality scores** based on dietary factors.
-2. **Clustering Analysis:** Identify groups with **distinct diet-sleep patterns** (e.g., “High Protein, Poor Sleep” vs. “Balanced Diet, Good Sleep”).
+---
 
-## **Limitations & Future Work**
-
-### **Challenges:**
-
-- **Confounding Variables:** External factors like stress and exercise could influence sleep.
-- **Sample Size:** The dataset is limited to my personal data (not generalizable to all populations).
-- **Missing Data:** Some days might lack complete tracking, requiring imputation methods.
-
-### **Future Work:**
-
-- Compare personal findings with **public sleep datasets** to validate trends.
-- Incorporate additional lifestyle factors (e.g., **stress, physical activity**).
-- Run an extended study over **6-12 months** for more robust conclusions.
-
-## **Tools & Technologies**
-
-- **Python (pandas, NumPy, seaborn, matplotlib, scikit-learn)** for data analysis and visualization.
-- **Jupyter Notebook** for exploratory data analysis and modeling.
-- **GitHub** for version control and project tracking.
-
-## **Project Timeline**
-
-| Date         | Milestone                                              |
-| ------------ | ------------------------------------------------------ |
-| **March 10** | Submit project proposal (GitHub README)                |
-| **April 18** | Collect data & conduct exploratory data analysis (EDA) |
-| **May 23**   | Apply machine learning models                          |
-| **May 30**   | Final submission                                       |
-
-## **Conclusion**
-
-This project will provide actionable insights on how diet influences sleep quality. By combining **personal tracking with data science techniques**, I aim to uncover meaningful patterns that could optimize **both my nutrition and sleep habits**. The findings will also contribute to a broader understanding of **diet-sleep interactions** in the field of health and wellness research.
-
+## Conclusion
+This project provides actionable insights into how diet influences sleep quality. By combining personal tracking with data science techniques—EDA, statistical testing, and ML—I aim to uncover meaningful patterns to optimize nutrition and sleep habits. The findings will also contribute to a broader understanding of diet-sleep interactions in health research.
