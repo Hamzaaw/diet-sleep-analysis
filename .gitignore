@@ -3,7 +3,7 @@
 
 # macOS specific files
 .DS_Store
-
+ 
 # Virtual environment directory
 .venv/
 venv/ 
