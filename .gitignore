@@ -1,0 +1,9 @@
+# Jupyter Notebook checkpoints
+*.ipynb_checkpoints/
+
+# macOS specific files
+.DS_Store
+
+# Virtual environment directory
+.venv/
+venv/ 

@@ -79,7 +79,7 @@ Each test includes statistical results, boxplots or scatter + regression line, a
 
 ## Machine Learning (ML) Methods
 - **Regression Analysis**: Predict sleep efficiency or deep sleep % from dietary and timing features.  
-- **Clustering Analysis**: Identify patterns/groups (e.g., “High Protein, Poor Sleep” vs. “Balanced Diet, Good Sleep”).  
+- **Clustering Analysis**: Identify patterns/groups (e.g., "High Protein, Poor Sleep" vs. "Balanced Diet, Good Sleep").  
 
 ---
 
@@ -96,10 +96,37 @@ Each test includes statistical results, boxplots or scatter + regression line, a
 
 ---
 
+> **AI-assistance disclosure:** Draft wording and some code-refactoring suggestions were generated with OpenAI ChatGPT. All code and analysis were verified and executed by the author.
+
+---
+
 ## Tools & Technologies
 - **Python:** pandas, NumPy, matplotlib, seaborn, scikit-learn, scipy  
 - **Jupyter Notebook:** Exploratory analysis & hypothesis testing  
 - **GitHub:** Version control & project tracking  
+
+---
+
+## Reproducibility
+
+```bash
+# 1️⃣  Clone
+git clone https://github.com/Hamzaaw/diet-sleep-analysis.git
+cd diet-sleep-analysis
+
+# 2️⃣  Create and activate virtual env (optional but recommended)
+python -m venv .venv  # Ensure python is python3, consider python3 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+
+# 3️⃣  Install dependencies
+pip install -r requirements.txt
+
+# 4️⃣  Launch notebooks
+jupyter notebook  # or jupyter lab
+```
+
+All code paths are relative, so running each cell top-to-bottom reproduces the analysis.
+*(Note: Requires Python >= 3.10)*
 
 ---
 
